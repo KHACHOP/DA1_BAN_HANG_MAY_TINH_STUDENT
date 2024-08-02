@@ -7,7 +7,7 @@ package app.view;
 import app.dto.HoaDonDTO;
 import app.dto.LichSuKH;
 import app.model.KhachHang;
-import app.service.HoaDonService;
+
 import app.service.KhachHangService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +22,7 @@ public class KhachHangMainPanel extends javax.swing.JFrame {
     private KhachHangService khs = new KhachHangService();
     private DefaultTableModel model = new DefaultTableModel();
     private DefaultTableModel modelLichSu = new DefaultTableModel();
-    private HoaDonService hoaDonService = new HoaDonService();
+    
     private int index = -1;
     public KhachHangMainPanel() {
         initComponents();

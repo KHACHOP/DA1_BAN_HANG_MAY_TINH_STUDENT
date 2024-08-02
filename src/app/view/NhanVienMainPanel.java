@@ -5,7 +5,7 @@
 package app.view;
 import app.dto.HoaDonDTO;
 import app.model.NhanVien;
-import app.service.HoaDonService;
+
 import app.service.NhanVienService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class NhanVienMainPanel extends javax.swing.JFrame {
     private NhanVienService nvs = new NhanVienService();
     private DefaultTableModel model = new DefaultTableModel();
     private DefaultTableModel modelNhanVien = new DefaultTableModel();
-    private HoaDonService hoaDonService = new HoaDonService();
+    
 
     private int index = -1;
     public NhanVienMainPanel() {
@@ -33,7 +33,7 @@ public class NhanVienMainPanel extends javax.swing.JFrame {
         cboTrangThai.addItem("Đã nghỉ việc");
 
         this.fillTable(nvs.getAll());
-        this.fillTableHoaDonNhanVien(hoaDonService.findAllHoaDon());
+        
     }
      private void fillTable(List<NhanVien> list) {
         model = (DefaultTableModel) tblNhanVien.getModel();
@@ -801,19 +801,6 @@ public class NhanVienMainPanel extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Không thể cập nhật mật khẩu cho Nhân Viên ở trường mật khẩu. Vui đổi mật khẩu ở Form đổi mật khẩu");
                 return;
             }
-
-            //            if (nvs.timTheoMaNV(nv.getMaNV()) != null) {
-                //                JOptionPane.showMessageDialog(this, "Mã Nhân Viên đã tồn tại");
-                //                return;
-                //            }
-            //            if (nvs.timTheoSdt(nv.getSdt()) != null) {
-                //                JOptionPane.showMessageDialog(this, "Số điện thoại Nhân Viên đã tồn tại");
-                //                return;
-                //            }
-            //            if (nvs.timTheoEmail(nv.getEmail()) != null) {
-                //                JOptionPane.showMessageDialog(this, "Email Nhân Viên đã tồn tại");
-                //                return;
-                //            }
             if (nvs.updateNhanVien(ma, nv) > 0) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công ");
                 this.fillTable(nvs.getAll());
@@ -909,15 +896,7 @@ public class NhanVienMainPanel extends javax.swing.JFrame {
         if (maNhanVien.isEmpty()) {
             return;
         }
-        List<HoaDonDTO> hoaDonDTOs = hoaDonService.findHoaDonByMaNhanVien(maNhanVien);
-        System.out.println(hoaDonDTOs.size());
-        if (hoaDonDTOs.size() > 0) {
-            System.out.println(hoaDonDTOs.size());
-            fillTableHoaDonNhanVien(hoaDonDTOs);
-        } else {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy lịch sử hóa đơn nhân viên " + maNhanVien);
-            fillTableHoaDonNhanVien(hoaDonService.findAllHoaDon());
-        }
+        
     }//GEN-LAST:event_btnTimKiemLichSuNhanVienActionPerformed
 
     private void tblHoaDonNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonNhanVienMouseClicked
@@ -925,7 +904,7 @@ public class NhanVienMainPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHoaDonNhanVienMouseClicked
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-        fillTableHoaDonNhanVien(hoaDonService.findAllHoaDon());
+        
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     /**
